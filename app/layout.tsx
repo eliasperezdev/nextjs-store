@@ -2,12 +2,14 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { Providers } from "./providers";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Mi Tienda",
-  description: "Carrito de compras con Next.js",
+  description: "E-commerce con Next.js y Tailwind",
 };
 
 export default function RootLayout({
@@ -17,10 +19,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
-      <body className={inter.className}>
+      <body className={`${inter.className} bg-gray-50 flex flex-col min-h-screen`}>
+        
         <Providers>
-          {children}
+          <Navbar />
+          
+          <main className="flex-grow w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            {children}
+          </main>
+          
+          <Footer />
         </Providers>
+        
       </body>
     </html>
   );
