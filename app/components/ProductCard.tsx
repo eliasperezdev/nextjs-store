@@ -2,6 +2,7 @@
 
 import { useCart, Product } from "../context/CartContext";
 import Image from "next/image";
+import Link from "next/link";
 
 interface Props {
   product: Product;
@@ -12,14 +13,16 @@ export default function ProductCard({ product }: Props) {
 
   return (
     <div className="bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-lg transition-shadow duration-300 flex flex-col h-full">
-      <div className="relative w-full h-48 p-4">
+      <Link href={`/product/${product.id}`} className="relative w-full h-48 p-4 block cursor-pointer">
+        <div className="relative w-full h-48 p-4">
 
-        <img
-          src={product.image}
-          alt={product.name}
-          className="w-full h-full object-contain"
-        />
-      </div>
+            <img
+            src={product.image}
+            alt={product.name}
+            className="w-full h-full object-contain"
+            />
+        </div>
+      </Link>
 
       <div className="p-4 flex flex-col flex-grow">
         <h3 className="text-sm font-bold text-gray-800 line-clamp-2 mb-2">

@@ -20,14 +20,23 @@ type CartContextType = {
   clearCart: () => void;
   total: number;
   totalItems: number;
+
+  isCartOpen: boolean;
+  openCart: () => void;
+  closeCart: () => void;
 };
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export const CartProvider = ({ children }: { children: ReactNode }) => {
   const [cart, setCart] = useState<CartItem[]>([]);
+
+  const [isCartOpen, setIsCartOpen] = useState(false);
   
   const [isLoaded, setIsLoaded] = useState(false); 
+
+  const openCart = () => setIsCartOpen(true);
+  const closeCart = () => setIsCartOpen(false);
 
   useEffect(() => {
     const storedCart = localStorage.getItem("my-store-cart");
@@ -60,6 +69,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
         return [...prevCart, { ...product, quantity: 1 }];
       }
     });
+    openCart();
   };
 
   const removeFromCart = (id: string) => {
@@ -82,6 +92,9 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
         clearCart,
         total,
         totalItems,
+        isCartOpen,
+        openCart,
+        closeCart,
       }}
     >
       {children}

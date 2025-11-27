@@ -4,6 +4,7 @@ import "./globals.css";
 import { Providers } from "./providers";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import CartSidebar from "./components/CartSidebar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,7 +24,7 @@ export default function RootLayout({
         
         <Providers>
           <Navbar />
-          
+          <CartSidebar />
           <main className="flex-grow w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             {children}
           </main>
