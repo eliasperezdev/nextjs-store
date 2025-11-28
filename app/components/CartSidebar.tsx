@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useCart } from "../context/CartContext";
 import Image from "next/image";
 
@@ -87,9 +88,13 @@ export default function CartSidebar() {
               <p className="text-xs text-gray-500 mb-4 text-center">
                 Impuestos y envío calculados al finalizar.
               </p>
-              <button className="w-full bg-blue-600 text-white py-3 rounded-lg font-bold hover:bg-blue-700 transition active:scale-95 shadow-lg shadow-blue-600/20">
+                <Link
+                href="/checkout"
+                onClick={closeCart} // Importante: cerrar el sidebar al navegar
+                className="block w-full text-center bg-blue-600 text-white py-3 rounded-lg font-bold hover:bg-blue-700 transition active:scale-95 shadow-lg shadow-blue-600/20"
+                >
                 Finalizar Compra
-              </button>
+                </Link>
               <button 
                 onClick={clearCart} 
                 className="w-full mt-2 text-gray-500 text-sm py-2 hover:text-gray-800"
