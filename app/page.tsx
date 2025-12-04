@@ -23,6 +23,10 @@ async function getProducts(): Promise<Product[]> {
 export default async function Home() {
   const products = await getProducts();
 
+  console.log("solicitando datos");
+  console.log(products);
+  
+
   const shuffled = [...products].sort(() => 0.5 - Math.random());
   
   const recommended = shuffled.slice(0, 4);
