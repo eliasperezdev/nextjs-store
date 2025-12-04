@@ -30,8 +30,9 @@ export default function CheckoutPage() {
     try {
         console.log(cart);
         
-      const { data } = await axios.post("http://localhost:4000/checkout", {
-        items: cart
+      const { data } = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/checkout`, {
+        items: cart,
+        email: formData.email
       });
 
       if (data.url) {
@@ -39,6 +40,8 @@ export default function CheckoutPage() {
       }
       
     } catch (error) {
+      console.log(error);
+      
       console.error("Error al procesar el pago:", error);
       alert("Hubo un error al conectar con MercadoPago.");
       setIsProcessing(false);

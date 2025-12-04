@@ -10,7 +10,7 @@ interface Props {
 
 async function getProductById(id: string) {
   try {
-    const { data } = await axios.get(`http://localhost:4000/products/${id}`);
+    const { data } = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/products/${id}`);
     return {
       id: data.id.toString(),
       name: data.name,

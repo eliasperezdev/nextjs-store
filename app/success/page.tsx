@@ -25,27 +25,35 @@ function SuccessContent() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
-  useEffect(() => {
+useEffect(() => {
     if (!orderId) {
       setLoading(false);
       return;
     }
 
-    fetch(`http://localhost:4000/orders/${orderId}`)
+    let isMounted = true;
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/orders/${orderId}`)
       .then((res) => {
         if (!res.ok) throw new Error("Error al buscar la orden");
         return res.json();
       })
       .then((data) => {
-        setOrder(data);
-        setLoading(false);
-        clearCart(); 
+        if (isMounted) {
+          setOrder(data);
+          setLoading(false);
+          clearCart(); 
+        }
       })
       .catch((err) => {
-        console.error(err);
-        setError(true);
-        setLoading(false);
+        if (isMounted) {
+          console.error(err);
+          setError(true);
+          setLoading(false);
+        }
       });
+
+    return () => { isMounted = false; };
+
   }, [orderId]);
 
   if (loading) {

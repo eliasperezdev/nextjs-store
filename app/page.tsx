@@ -4,7 +4,7 @@ import { Product } from "./context/CartContext";
 
 async function getProducts(): Promise<Product[]> {
   try {
-    const { data } = await axios.get("http://localhost:4000/products");
+    const { data } = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/products`);
 
     return data.map((item: any) => ({
       id: item.id.toString(),
