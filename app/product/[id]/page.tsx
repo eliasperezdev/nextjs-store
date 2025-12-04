@@ -15,7 +15,7 @@ async function getProductById(id: string) {
       id: data.id.toString(),
       name: data.name,
       price: data.price,
-      image: null,
+      image: data.image,
       description: data.description,
       category: data.categoryId,
     };
