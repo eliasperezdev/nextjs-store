@@ -6,7 +6,7 @@ export type Product = {
   id: string;
   name: string;
   price: number;
-  image: string;
+  image: string | null;
 };
 
 export type CartItem = Product & {
