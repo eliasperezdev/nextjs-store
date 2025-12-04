@@ -51,7 +51,7 @@ export default function CartSidebar() {
                 <div key={item.id} className="flex gap-4">
                   <div className="relative w-20 h-20 flex-shrink-0 border border-gray-100 rounded-md overflow-hidden">
                     <img 
-                        src={item.image} 
+                        src={item.image || ""} 
                         alt={item.name} 
                         className="w-full h-full object-contain" 
                     />

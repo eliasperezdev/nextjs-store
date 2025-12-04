@@ -17,7 +17,7 @@ export default function ProductCard({ product }: Props) {
         <div className="relative w-full h-48 p-4">
 
             <img
-            src={product.image}
+            src={product.image || ""}
             alt={product.name}
             className="w-full h-full object-contain"
             />
