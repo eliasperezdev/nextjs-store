@@ -10,7 +10,6 @@ export default function Navbar() {
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Buscando:", searchTerm);
   };
 
   return (
