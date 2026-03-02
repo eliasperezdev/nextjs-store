@@ -1,6 +1,8 @@
 import axios from "axios";
 import Link from "next/link";
+import Image from "next/image";
 import AddToCartBtn from "../../components/AddToCartBtn";
+import { Product } from "../../types";
 
 interface Props {
   params: Promise<{
@@ -8,7 +10,7 @@ interface Props {
   }>;
 }
 
-async function getProductById(id: string) {
+async function getProductById(id: string): Promise<Product | null> {
   try {
     const { data } = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/products/${id}`);
     return {
@@ -55,9 +57,11 @@ export default async function ProductPage({ params }: Props) {
               {product.category}
            </span>
            
-           <img 
-            src={product.image} 
-            alt={product.name} 
+           <Image
+            src={product.image ?? ""}
+            alt={product.name}
+            width={500}
+            height={400}
             className="max-h-[400px] w-full object-contain hover:scale-105 transition-transform duration-500"
           />
         </div>

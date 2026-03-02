@@ -4,6 +4,7 @@ import { useCart } from "../context/CartContext";
 import { useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 export default function CheckoutPage() {
   const { cart, total } = useCart();
@@ -28,8 +29,6 @@ export default function CheckoutPage() {
     setIsProcessing(true);
 
     try {
-        console.log(cart);
-        
       const { data } = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/checkout`, {
         items: cart,
         email: formData.email
@@ -40,8 +39,6 @@ export default function CheckoutPage() {
       }
       
     } catch (error) {
-      console.log(error);
-      
       console.error("Error al procesar el pago:", error);
       alert("Hubo un error al conectar con MercadoPago.");
       setIsProcessing(false);
@@ -147,8 +144,8 @@ export default function CheckoutPage() {
           <div className="space-y-4 mb-6 max-h-80 overflow-y-auto pr-2">
             {cart.map((item) => (
               <div key={item.id} className="flex gap-4 border-b border-gray-200 pb-4 last:border-0">
-                <div className="w-16 h-16 bg-white rounded border border-gray-200 overflow-hidden flex-shrink-0">
-                  <img src={item.image || ""} alt={item.name} className="w-full h-full object-contain" />
+                <div className="relative w-16 h-16 bg-white rounded border border-gray-200 overflow-hidden flex-shrink-0">
+                  <Image fill src={item.image || ""} alt={item.name} className="object-contain" sizes="64px" />
                 </div>
                 <div className="flex-1 text-sm">
                   <p className="font-bold text-gray-800 line-clamp-2">{item.name}</p>

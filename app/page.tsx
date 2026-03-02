@@ -1,12 +1,21 @@
 import axios from "axios";
 import ProductCard from "./components/ProductCard";
-import { Product } from "./context/CartContext";
+import { Product } from "./types";
+
+type ApiProduct = {
+  id: number | string;
+  name: string;
+  price: number;
+  image: string | null;
+  description: string;
+  stock: number;
+};
 
 async function getProducts(): Promise<Product[]> {
   try {
     const { data } = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/products`);
 
-    return data.map((item: any) => ({
+    return data.map((item: ApiProduct): Product => ({
       id: item.id.toString(),
       name: item.name,
       price: item.price,
@@ -22,10 +31,6 @@ async function getProducts(): Promise<Product[]> {
 
 export default async function Home() {
   const products = await getProducts();
-
-  console.log("solicitando datos");
-  console.log(products);
-  
 
   const shuffled = [...products].sort(() => 0.5 - Math.random());
   

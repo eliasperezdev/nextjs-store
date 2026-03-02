@@ -1,17 +1,7 @@
 "use client";
 
 import { createContext, useContext, useState, useEffect, ReactNode } from "react";
-
-export type Product = {
-  id: string;
-  name: string;
-  price: number;
-  image: string | null;
-};
-
-export type CartItem = Product & {
-  quantity: number;
-};
+import { Product, CartItem } from "../types";
 
 type CartContextType = {
   cart: CartItem[];
@@ -52,21 +42,20 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     if (isLoaded) {
-      localStorage.setItem("mi-tienda-cart", JSON.stringify(cart));
+      localStorage.setItem("my-store-cart", JSON.stringify(cart));
     }
   }, [cart, isLoaded]);
 
   const addToCart = (product: Product) => {
+    const { id, name, price, image } = product;
     setCart((prevCart) => {
-      const existingItem = prevCart.find((item) => item.id === product.id);
+      const existingItem = prevCart.find((item) => item.id === id);
       if (existingItem) {
         return prevCart.map((item) =>
-          item.id === product.id
-            ? { ...item, quantity: item.quantity + 1 }
-            : item
+          item.id === id ? { ...item, quantity: item.quantity + 1 } : item
         );
       } else {
-        return [...prevCart, { ...product, quantity: 1 }];
+        return [...prevCart, { id, name, price, image, quantity: 1 }];
       }
     });
     openCart();

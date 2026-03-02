@@ -1,6 +1,7 @@
 "use client";
 
-import { useCart, Product } from "../context/CartContext";
+import { useCart } from "../context/CartContext";
+import { Product } from "../types";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -13,15 +14,14 @@ export default function ProductCard({ product }: Props) {
 
   return (
     <div className="bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-lg transition-shadow duration-300 flex flex-col h-full">
-      <Link href={`/product/${product.id}`} className="relative w-full h-48 p-4 block cursor-pointer">
-        <div className="relative w-full h-48 p-4">
-
-            <img
-            src={product.image || ""}
-            alt={product.name}
-            className="w-full h-full object-contain"
-            />
-        </div>
+      <Link href={`/product/${product.id}`} className="relative w-full h-48 block cursor-pointer overflow-hidden">
+        <Image
+          fill
+          src={product.image || ""}
+          alt={product.name}
+          className="object-contain p-4"
+          sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 25vw"
+        />
       </Link>
 
       <div className="p-4 flex flex-col flex-grow">
