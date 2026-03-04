@@ -16,6 +16,8 @@ type CartContextType = {
   closeCart: () => void;
 };
 
+const CART_KEY = "my-store-cart";
+
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export const CartProvider = ({ children }: { children: ReactNode }) => {
@@ -29,7 +31,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
   const closeCart = () => setIsCartOpen(false);
 
   useEffect(() => {
-    const storedCart = localStorage.getItem("my-store-cart");
+    const storedCart = localStorage.getItem(CART_KEY);
     if (storedCart) {
       try {
         setCart(JSON.parse(storedCart));
@@ -42,7 +44,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     if (isLoaded) {
-      localStorage.setItem("my-store-cart", JSON.stringify(cart));
+      localStorage.setItem(CART_KEY, JSON.stringify(cart));
     }
   }, [cart, isLoaded]);
 
