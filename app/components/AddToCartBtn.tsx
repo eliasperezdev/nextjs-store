@@ -18,9 +18,9 @@ export default function AddToCartBtn({ product }: { product: Product }) {
     <button
       onClick={handleAdd}
       className={`w-full md:w-auto px-8 py-3 rounded-lg font-bold transition-all transform active:scale-95 ${
-        isAdded 
-          ? "bg-green-600 hover:bg-green-700 text-white" 
-          : "bg-blue-600 hover:bg-blue-700 text-white"
+        isAdded
+          ? "bg-green-600 hover:bg-green-700 text-white"
+          : "bg-brand hover:bg-brand-hover text-white"
       }`}
     >
       {isAdded ? "¡Agregado al Carrito!" : "Agregar al Carrito"}

@@ -13,7 +13,7 @@ export default function ProductCard({ product }: Props) {
   const { addToCart } = useCart();
 
   return (
-    <div className="bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-lg transition-shadow duration-300 flex flex-col h-full">
+    <div className="bg-surface border border-border rounded-lg shadow-sm hover:shadow-lg transition-shadow duration-300 flex flex-col h-full">
       <Link href={`/product/${product.id}`} className="relative w-full h-48 block cursor-pointer overflow-hidden">
         <Image
           fill
@@ -25,14 +25,14 @@ export default function ProductCard({ product }: Props) {
       </Link>
 
       <div className="p-4 flex flex-col flex-grow">
-        <h3 className="text-sm font-bold text-gray-800 line-clamp-2 mb-2">
+        <h3 className="text-sm font-bold text-foreground line-clamp-2 mb-2">
           {product.name}
         </h3>
-        <p className="text-lg font-bold text-blue-600 mb-4">${product.price}</p>
-        
+        <p className="text-lg font-bold text-brand mb-4">${product.price}</p>
+
         <button
           onClick={() => addToCart(product)}
-          className="mt-auto w-full bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 active:bg-blue-800 transition-colors text-sm font-medium flex items-center justify-center gap-2"
+          className="mt-auto w-full bg-brand text-white py-2 px-4 rounded hover:bg-brand-hover active:opacity-80 transition-colors text-sm font-medium flex items-center justify-center gap-2"
         >
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-4 h-4">
             <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />

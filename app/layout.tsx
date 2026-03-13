@@ -20,12 +20,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
-      <body className={`${inter.className} bg-gray-50 flex flex-col min-h-screen`}>
-        
+      <body className={`${inter.className} bg-background flex flex-col min-h-screen`}>
+
         <Providers>
           <Navbar />
           <CartSidebar />
-          <main className="flex-grow bg-gray-100 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <main className="flex-grow bg-background w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             {children}
           </main>
           
