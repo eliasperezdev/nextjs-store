@@ -41,14 +41,14 @@ export default async function Home() {
   return (
     <div className="space-y-12">
       
-      <section className="bg-blue-600 text-white rounded-2xl p-8 sm:p-12 text-center shadow-lg">
+      <section className="bg-brand text-white rounded-2xl p-8 sm:p-12 text-center shadow-lg">
         <h1 className="text-4xl font-extrabold mb-4">Bienvenido a MiTienda</h1>
         <p className="text-blue-100 text-lg">Las mejores ofertas en tecnología y ropa.</p>
       </section>
 
       <section>
         <div className="flex items-center gap-2 mb-6">
-          <h2 className="text-2xl font-bold text-gray-800">🔥 Recomendados para ti</h2>
+          <h2 className="text-2xl font-bold text-foreground">🔥 Recomendados para ti</h2>
           <span className="bg-orange-100 text-orange-600 text-xs font-bold px-2 py-1 rounded-full">Hot</span>
         </div>
         
@@ -60,7 +60,7 @@ export default async function Home() {
       </section>
 
       <section>
-        <h2 className="text-2xl font-bold text-gray-800 mb-6">Explora todo el catálogo</h2>
+        <h2 className="text-2xl font-bold text-foreground mb-6">Explora todo el catálogo</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {others.map((product) => (
             <ProductCard key={product.id} product={product} />
